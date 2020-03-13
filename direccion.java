@@ -2,12 +2,15 @@ package paquete1;
 
 public class direccion {
 
+    //declaracion de variables
+    
 	String calle ;
 	int Numero;
 	int Codigo_Postal;
 	String Poblacion ;
 	String pais;
 	
+    //getters y setters
 	public void set_calle(String p) 
 	{
 		calle=p;
@@ -48,6 +51,17 @@ public class direccion {
 	{
 	return pais;	
 	}
+    
+    //constructor parametrizado
+    public direccion(String call,int num,int codp,String pobl,String cntry)
+    {
+        calle=call ;
+        Numero=num;
+        Codigo_Postal=codp;
+        Poblacion=pobl ;
+        pais=cntry;
+    }
+    //constructor por defecto
 	public direccion() 
 	{
 		

@@ -1,13 +1,16 @@
 package paquete1;
 
+
+
 public class clientes {
+    //declaracion de variables
 	String Nombre;
 	String apellidos;
 	String email;
 	String telefono;
 	direccion dir;
 	
-	
+	// getters y setters
 	public void set_Nombre(String p) 
 	{
 		Nombre=p;
@@ -48,8 +51,17 @@ public class clientes {
 	{
 	return dir;	
 	}
-	
-	public clientes() 
+    //constructor por parametros
+    public clientes(String nom,String apell,String mail,String tlf,direccion direcc)
+    {
+        Nombre=nom;
+        apellidos=apell;
+        email=mail;
+        telefono=tlf;
+        dir =new direccion();
+    }
+    //constructor por defecto
+	public clientes()
 	{
 		Nombre="0";
 		apellidos="0";

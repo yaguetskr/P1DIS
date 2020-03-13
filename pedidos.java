@@ -50,6 +50,14 @@ public class pedidos {
 	{
 	return fecha_entrega;		
 	}
+    public pedidos(producto[] p,int c,direccion d,String dest,String fcha)
+    {
+        productos = p;
+        cantidad = c;
+        dir_entrega = d;
+        destinatario = dest;
+        fecha_entrega = fcha;
+    }
 	public pedidos() 
 	{
 		productos = new producto[10];
