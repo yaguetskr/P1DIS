@@ -48,12 +48,10 @@ public class main {
 	
 	
 	
-    public static void generatep(String name, producto[] producto,clientes[] clientes,producto[] producto) throws Exception{
+    public static void generate(String name, producto[] producto,clientes[] clientes,pedidos[] pedidos) throws Exception{
 
-        if(key.isEmpty() || value.isEmpty() || key.size()!=value.size()){
-            System.out.println("ERROR empty ArrayList");
-            return;
-        }else{
+  
+       
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -64,12 +62,12 @@ public class main {
             //Main Node
             Element raiz = document.getDocumentElement();
             //Por cada key creamos un item que contendrá la key y el value
-            for(int i=0; i<producto.size();i++){
+            for(int i=0; i<producto.length;i++){
                 //Item Node
                 Element itemNode = document.createElement("PRODUCTO"); 
                 //Key Node
                 Element keyNode = document.createElement("CODIGO"); 
-                Text nodeKeyValue = document.createTextNode(producto[i].get_Codigo());
+                Text nodeKeyValue = document.createTextNode(Integer.toString(producto[i].get_Codigo()));
                 keyNode.appendChild(nodeKeyValue);
                 
                 //Value Node
@@ -90,12 +88,12 @@ public class main {
             }
             
             
-            for(int i=0; i<clientes.size();i++){
+            for(int i=0; i<clientes.length;i++){
                 //Item Node
                 Element itemNode2 = document.createElement("CLIENTE"); 
                 //Key Node
                 Element nombreNode = document.createElement("NOMBRE"); 
-                Text nodenombre = document.createTextNode(producto[i].get_Codigo());
+                Text nodenombre = document.createTextNode(Integer.toString(producto[i].get_Codigo()));
                 nombreNode.appendChild(nodenombre);
                 
                 //Value Node
@@ -104,19 +102,19 @@ public class main {
                 apellNode.appendChild(apellnodeValueValue);
                 
                 Element tlfs = document.createElement("TELEFONOS"); 
-                Text tlfsvalue = document.createTextNode(producto[i].get_Nombrt());                
+                Text tlfsvalue = document.createTextNode(producto[i].get_Nombre());                
                 tlfs.appendChild(tlfsvalue);
                 
                 //append keyNode and valueNode to itemNode
-                itemNode.appendChild(nombreNode);
-                itemNode.appendChild(apellNode);
-                itemNode.appendChild(tlfs);
+                itemNode2.appendChild(nombreNode);
+                itemNode2.appendChild(apellNode);
+                itemNode2.appendChild(tlfs);
                 //append itemNode to raiz
                 raiz.appendChild(itemNode2); //pegamos el elemento a la raiz "Documento"
             }
             
             
-            for(int i=0; i<pedidos.size();i++){
+            for(int i=0; i<pedidos.length;i++){
                 //Item Node
                 Element itemNode3 = document.createElement("PEDIDOS"); 
                 //Key Node
@@ -129,16 +127,13 @@ public class main {
                 Text cantvalue = document.createTextNode(producto[i].get_Nombre());                
                 cantnode.appendChild(cantvalue);
                 
-                Element  = document.createElement("TELEFONOS"); 
-                Text tlfsvalue = document.createTextNode(producto[i].get_Nombre());                
-                tlfs.appendChild(tlfsvalue);
+
                 
                 //append keyNode and valueNode to itemNode
-                itemNode.appendChild(nombreNode);
-                itemNode.appendChild(apellNode);
-                itemNode.appendChild(tlfs);
+                itemNode3.appendChild(cantnode);
+
                 //append itemNode to raiz
-                raiz.appendChild(itemNode2); //pegamos el elemento a la raiz "Documento"
+                raiz.appendChild(itemNode3); //pegamos el elemento a la raiz "Documento"
             }
             
             
@@ -167,7 +162,7 @@ public class main {
             Result result = new StreamResult(new java.io.File(name+".xml")); //nombre del archivo
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.transform(source, result);
-        }
+        
     }
 	
 	
@@ -404,14 +399,12 @@ public class main {
         
         
         
-        list<clientes> listaclientes=Arrays.asList(clients);
-        list<producto> listaproductos=Arrays.asList(prod);
-        list<pedidos> listapedidos=Arrays.asList(pedido);
+
         
         
 
         try { 
-            generateclientes("bbdd", key, value);
+            generate("xml",prod,clients,pedido);
         } catch (Exception e) {} 
         
         
