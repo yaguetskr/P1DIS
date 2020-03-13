@@ -54,7 +54,7 @@ public class producto {
         return Localiza;
         
     }
-    public void set_pendientes(boolean p)
+    public void set_pendientes(boolean p
     {
         pendientes = p;
     }

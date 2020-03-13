@@ -11,8 +11,26 @@ package paquete1;
 
 
 
-
-
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
 
 
 
@@ -22,6 +40,143 @@ import java.io.InputStreamReader;
 //declaramos las funciones encargadas de buscar en los arrays de clase producto y cliente
 
 public class main {
+	
+	
+	
+	
+	
+	
+	
+	
+    public static void generatep(String name, producto[] producto,clientes[] clientes,producto[] producto) throws Exception{
+
+        if(key.isEmpty() || value.isEmpty() || key.size()!=value.size()){
+            System.out.println("ERROR empty ArrayList");
+            return;
+        }else{
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            DOMImplementation implementation = builder.getDOMImplementation();
+            Document document = implementation.createDocument(null, name, null);
+            document.setXmlVersion("1.0");
+
+            //Main Node
+            Element raiz = document.getDocumentElement();
+            //Por cada key creamos un item que contendrá la key y el value
+            for(int i=0; i<producto.size();i++){
+                //Item Node
+                Element itemNode = document.createElement("PRODUCTO"); 
+                //Key Node
+                Element keyNode = document.createElement("CODIGO"); 
+                Text nodeKeyValue = document.createTextNode(producto[i].get_Codigo());
+                keyNode.appendChild(nodeKeyValue);
+                
+                //Value Node
+                Element valueNode = document.createElement("NOMBRE"); 
+                Text nodeValueValue = document.createTextNode(producto[i].get_Nombre());                
+                valueNode.appendChild(nodeValueValue);
+                
+                Element valuependiente = document.createElement("PENDIENTE"); 
+                Text nodeValuependiente = document.createTextNode(producto[i].get_Nombre());                
+                valuependiente.appendChild(nodeValuependiente);
+                
+                //append keyNode and valueNode to itemNode
+                itemNode.appendChild(keyNode);
+                itemNode.appendChild(valueNode);
+                itemNode.appendChild(valuependiente);
+                //append itemNode to raiz
+                raiz.appendChild(itemNode); //pegamos el elemento a la raiz "Documento"
+            }
+            
+            
+            for(int i=0; i<clientes.size();i++){
+                //Item Node
+                Element itemNode2 = document.createElement("CLIENTE"); 
+                //Key Node
+                Element nombreNode = document.createElement("NOMBRE"); 
+                Text nodenombre = document.createTextNode(producto[i].get_Codigo());
+                nombreNode.appendChild(nodenombre);
+                
+                //Value Node
+                Element apellNode = document.createElement("APELLIDOS"); 
+                Text apellnodeValueValue = document.createTextNode(producto[i].get_Nombre());                
+                apellNode.appendChild(apellnodeValueValue);
+                
+                Element tlfs = document.createElement("TELEFONOS"); 
+                Text tlfsvalue = document.createTextNode(producto[i].get_Nombrt());                
+                tlfs.appendChild(tlfsvalue);
+                
+                //append keyNode and valueNode to itemNode
+                itemNode.appendChild(nombreNode);
+                itemNode.appendChild(apellNode);
+                itemNode.appendChild(tlfs);
+                //append itemNode to raiz
+                raiz.appendChild(itemNode2); //pegamos el elemento a la raiz "Documento"
+            }
+            
+            
+            for(int i=0; i<pedidos.size();i++){
+                //Item Node
+                Element itemNode3 = document.createElement("PEDIDOS"); 
+                //Key Node
+                //Element nombreNode = document.createElement("PRODUCTO"); 
+                //Text nodenombre = document.createTextNode(producto[i].get_Codigo());
+                //nombreNode.appendChild(nodenombre);
+                
+                //Value Node
+                Element cantnode = document.createElement("CANTIDAD"); 
+                Text cantvalue = document.createTextNode(producto[i].get_Nombre());                
+                cantnode.appendChild(cantvalue);
+                
+                Element  = document.createElement("TELEFONOS"); 
+                Text tlfsvalue = document.createTextNode(producto[i].get_Nombre());                
+                tlfs.appendChild(tlfsvalue);
+                
+                //append keyNode and valueNode to itemNode
+                itemNode.appendChild(nombreNode);
+                itemNode.appendChild(apellNode);
+                itemNode.appendChild(tlfs);
+                //append itemNode to raiz
+                raiz.appendChild(itemNode2); //pegamos el elemento a la raiz "Documento"
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            //Generate XML
+            Source source = new DOMSource(document);
+            //Indicamos donde lo queremos almacenar
+            Result result = new StreamResult(new java.io.File(name+".xml")); //nombre del archivo
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.transform(source, result);
+        }
+    }
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -246,16 +401,53 @@ public class main {
        
         
         
+        
+        
+        
+        list<clientes> listaclientes=Arrays.asList(clients);
+        list<producto> listaproductos=Arrays.asList(prod);
+        list<pedidos> listapedidos=Arrays.asList(pedido);
+        
+        
+
+        try { 
+            generateclientes("bbdd", key, value);
+        } catch (Exception e) {} 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     //estas funciones devuelven la posicion en el array de cliente y producto
 
     
     
-
-        
-        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         
 }
+
         
         
         
